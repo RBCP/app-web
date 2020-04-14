@@ -5,6 +5,9 @@ import App from './App'
 import store from './store'
 import router from './router'
 import ElementUI from 'element-ui'
+import '@/icons'
+import 'element-ui/lib/theme-chalk/index.css'
+import '@/styles/index.scss'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 /* eslint-disable no-new */
