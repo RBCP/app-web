@@ -1,0 +1,195 @@
+.el-upload{
+  input[type="file"]{
+    display:none !important;
+  }
+}
+.el-message--success .el-message__content {
+  font-family: Arial,HelveticaNeue,sans-serif;
+  font-size: 10px;
+  color: #353B57;
+  letter-spacing:0.26px;
+}
+.el-message{
+  background: #FFFFFF;
+  box-shadow:0 0 4px 0 #CDCFD3;
+  border-color: #CDCFD3;
+  border-radius:12px;
+  min-width:106px;
+  height:24px;
+}
+.el-tooltip__popper{
+  max-width:400px;
+}
+.el-upload__input {
+  display: none;
+}
+tr.el_table__row:hover{
+  background: #FFFFFF;
+  border: 0 solid #0046AD;
+  box-shadow: 0 0 4px 0 #5189FF;
+  border-radius: 2px;
+}
+.el-checkbox-group{
+  font-family:  Arial,HelveticaNeue,sans-serif;
+  font-size: 12px;
+  color: #767676;
+  letter-spacing: 0.67px;
+  margin-left:20px;
+  margin-right:77px;
+}
+.el-loading-text{
+  font-family:  Arial,HelveticaNeue,sans-serif;;
+  font-size: 10px;
+  color: #2F3137 !important;
+  letter-spacing: 0.26px;
+}
+//暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+.el-pagination{
+  font-family: Arial,HelveticaNeue,sans-serif;
+  font-size: 12px;
+  color: #5A85DF !important;
+  letter-spacing: 0.67px;
+}
+.el-pagination__total {
+  margin-right: 10px;
+  // font-family:  Arial,HelveticaNeue,sans-serif;;
+  font-size: 12px;
+  color: #5A85DF !important;
+  letter-spacing: 0.67px;
+}
+.el-pagination .btn-prev .btn-next {
+  padding-right: 12px;
+  display:inline-block;
+  background: #FFFFFF;
+  border-radius: 2px;
+  border:1px solid #F0F0F0;
+  width:28px;
+  height:24px;
+}
+
+.el-message-box{
+  background: #FFFFFF;
+  box-shadow: 0 0 6px 0 rgba(34,35,38,0.30);
+  border-radius: 8px;
+  width:300px;
+  height:157px;
+  font-family: Arial,HelveticaNeue,sans-serif;
+  font-size: 14px;
+  color: #444444;
+  letter-spacing: 0.67px;
+}
+.el-breadcrumb__inner.is-link{
+  color:#FFFFFF;
+}
+.el-breadcrumb__item:last-child .el-breadcrumb__inner{
+  color:#FFFFFF;
+}
+.el-breadcrumb__inner a{
+  color: #FFFFFF;
+}
+.el-message-box__message{
+  margin-top:20px;
+}
+.el-message-box__btns{
+  padding: 15px 15px 0 !important;
+}
+.el-message-box__btns button:nth-child(2) {
+  margin-bottom:19px;
+  margin-left: 49px;
+}
+.el-message-box__status+.el-message-box__message {
+  padding:0;
+}
+.el-message-box__status {
+  position: absolute;
+  left:45%;
+  top:-2%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 30px!important;
+}
+.el-table td{
+  min-width: 0;
+  padding:0;
+  border:none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative;
+  height:40px;
+  font-family: Arial,HelveticaNeue,sans-serif;
+  font-size: 14px;
+  color: #666872;
+  letter-spacing: 0.51px;
+}
+.el-select{
+  width:150px;
+}
+.el-table th{
+  min-width: 0;
+  padding:0;
+  height:40px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative;
+  background-color:#F1F2F6;
+  font-family:  Arial,HelveticaNeue,sans-serif;
+  font-size: 14px;
+  color: #4B4B4B;
+  letter-spacing: 0.51px;
+  border-radius: 2px;
+  border-right:1px solid #FFFFFF
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+  background:#EBEEF5;
+}
+.el-select .el-input {
+  display: block;
+  width: 120px;
+}
+.el-form-item--small .el-form-item__content, .el-form-item--small .el-form-item__label {
+  line-height: 21px;
+}
+.el-form--label-top .el-form-item__label {
+  padding: 0 0 2px;
+}
+.el-table__body{
+  table-layout:auto !important;
+}
+.el-message-box__btns {
+  padding: 5px 15px 0;
+  text-align: center;
+}
+.el-message-box__status.el-icon-warning {
+  color:  #D0021B;;
+}
+.el-input__inner{
+  height:35px;
+  margin-right:25px;
+}
+.el-button--primary {
+  color: #FFF;
+  background-color: #0046AD;
+  border-color: #0046AD;
+  margin-left: 15px;
+}
+//element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+

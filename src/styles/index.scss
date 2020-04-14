@@ -1,0 +1,189 @@
+@import './variables.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  margin:0;
+  overflow-x:hidden;
+  overflow-y:hidden;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+div:focus{
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+//main-container全局样式
+.app-main{
+  min-height: 100%;
+  margin-left:80px;
+  font-family:Arial, HelveticaNeue, sans-serif
+}
+
+
+//搜索栏样式
+.filter-container {
+
+}
+
+//操作栏样式
+.operate-container {
+  margin-top: 20px;
+}
+
+.operate-container .btn-add {
+  float: right;
+}
+
+//表格栏样式
+.table-container {
+  min-width:1000px;
+  max-height:800px;
+}
+
+//批量操作栏样式
+.batch-operate-container {
+  display: inline-block;
+  margin-top: 20px;
+  text-align:center;
+}
+
+//分页栏样式
+.pagination-container {
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+}
+.more-item[data-v-ea6ca12c] {
+  display: inline-block;
+  position: absolute;
+  font-size: 14px;
+  color: #0046AD;
+  letter-spacing: 0.67px;
+  top: 134px;
+  left: 1191px;
+}
+.filter-container {
+  border:1px solid #E4E4E4;
+  margin-bottom:4px;
+  padding:15px 4px 6px 10px;
+  width: 910px;
+  z-index:100;
+  background: #FFFFFF;
+  box-shadow: 0 0 7px 0 #E0E4EC;
+  border-radius: 4px;
+  position:absolute;
+}
+.filter-button{
+  display: inline-block;
+  padding-top: 10px;
+  margin-left: -29px;
+  font-size:17px;
+  border:none;
+  background-color:#FFFFFF
+}
+
+//添加、更新表单样式
+.form-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 720px;
+  padding: 35px 35px 15px 35px;
+  margin: 20px auto;
+}
+
+//主标题
+.font-extra-large {
+  font-size: 20px;
+  color: #303133;
+}
+
+//标题
+.font-title-large {
+  font-size: 18px;
+  color: #303133;
+}
+
+//小标题
+.font-title-medium {
+  font-size: 16px;
+  color: #303133;
+}
+
+//正文
+.font-medium {
+  font-size: 16px;
+  color: #606266;
+}
+
+//正文
+.font-small {
+  font-size: 14px;
+  color: #606266;
+}
+
+//正文（小）
+.font-extra-small {
+  font-size: 13px;
+  color: #606266;
+}
+
+.color-main {
+  color: #409EFF;
+}
+
+.color-success {
+  color: #67C23A;
+}
+
+.color-warning {
+  color: #E6A23C;
+}
+
+.color-danger {
+  color: #F56C6C;
+}
+
+.color-info {
+  color: #909399;
+}
+
