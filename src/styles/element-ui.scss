@@ -2,10 +2,21 @@
   input[type="file"]{
     display:none !important;
   }
+  position:absolute !important;
+  left:0 !important;
+}
+.el-upload-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  width: 400px;
+  position: absolute;
+  left: 108px;
 }
 .el-message--success .el-message__content {
   font-family: Arial,HelveticaNeue,sans-serif;
-  font-size: 10px;
+  font-size: 14px;
   color: #353B57;
   letter-spacing:0.26px;
 }
@@ -94,7 +105,7 @@ tr.el_table__row:hover{
   color: #FFFFFF;
 }
 .el-message-box__message{
-  margin-top:20px;
+  margin-top:0;
 }
 .el-message-box__btns{
   padding: 15px 15px 0 !important;
@@ -130,7 +141,7 @@ tr.el_table__row:hover{
   letter-spacing: 0.51px;
 }
 .el-select{
-  width:150px;
+  width:230px;
 }
 .el-table th{
   min-width: 0;
@@ -154,7 +165,7 @@ tr.el_table__row:hover{
 }
 .el-select .el-input {
   display: block;
-  width: 120px;
+  width: 230px;
 }
 .el-form-item--small .el-form-item__content, .el-form-item--small .el-form-item__label {
   line-height: 21px;

@@ -19,17 +19,18 @@
     transition: width .28s;
     width: 230px !important;
     height: 100%;
-    margin-left:3.1%;
     position: fixed;
     font-family:Arial, HelveticaNeue, sans-serif;
     font-weight:bold;
-    font-size: 16px;
     color: #323647;
     letter-spacing: -0.13px;
     top:111px ;
+    background:#0046AD;
+    margin-left:50px;
     border-right: solid 1px #e6e6e6;
     bottom: 0;
     left: 0;
+    text-align:left;
     overflow: hidden;
     a {
       display: inline-block;

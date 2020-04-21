@@ -1,7 +1,6 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <p style="display:inline-block;font-family:Arial, HelveticaNeue, sans-serif;font-weight:bold;font-size: 16px;color: #FFFFFF;letter-spacing: 0.04px;margin-left:8px;">comChat system management</p>
-   <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
+    <div class="title">comChat应用号管理系统</div>
     <breadcrumb></breadcrumb>
   </el-menu>
 </template>
@@ -45,7 +44,6 @@ export default {
   .hamburger-container {
     line-height: 58px;
     height: 50px;
-    float: left;
     padding-left:11px;
     padding-right:1px;
   }
@@ -60,6 +58,17 @@ export default {
     display: inline-block;
     position: absolute;
     right: 35px;
+  }
+  .title{
+    display:inline-block;
+    font-family:Arial, HelveticaNeue, sans-serif;
+    font-weight:bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0.04px;
+    margin-top:13px;
+    position:absolute;
+    left:50px;
   }
     .avatar-wrapper {
       cursor: pointer;
