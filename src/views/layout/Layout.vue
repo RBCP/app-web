@@ -26,14 +26,10 @@ export default {
     sidebar() {
       return this.$store.state.app.sidebar
     },
-    device() {
-      return this.$store.state.app.device
-    },
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile'
       }
     }
   }
@@ -42,7 +38,6 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   .app-wrapper {
-    @include clearfix;
     position: relative;
     height: 100%;
     width: 100%;

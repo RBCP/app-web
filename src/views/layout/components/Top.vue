@@ -1,8 +1,6 @@
 <template>
   <div class="top" >
-    <div class="left-item">
-    <svg-icon icon-class="top nav_TDKlogo" style="width:10em;height:4.6em;padding-left:14px"></svg-icon>
-    </div>
+    <svg-icon icon-class="top nav_TDKlogo" style="width:10em;height:4.6em;margin-left:10px;float:left"></svg-icon>
     <div class="right-item">
     <ul>
       <li>
@@ -93,11 +91,6 @@
     position: absolute;
     left: 46px;
     bottom: -5px;
-  }
-  .left-item{
-    display:inline-block;
-    width:400px;
-    height:40px;
   }
   .left-item p{
     display:inline-block;
