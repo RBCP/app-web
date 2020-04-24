@@ -1,7 +1,7 @@
 <template>
     <div class="pagelist">
       <div class="left-item">
-      <span class="total">共{{pageConfig.total}}条</p>
+      <span class="total">共{{pageConfig.total}}条
       </span>
       <span class="current">
         {{currentPage}}/{{pageTotal}}页
@@ -30,7 +30,6 @@
 
 <script>
     export default {
-        name: "",
         props:{
           pageConfig:{
             type:Object,require:true,default(){
@@ -126,8 +125,6 @@
   }
   .right-item{
     display:inline-block;
-    float:right;
-    margin-left:189px;
   }
   .pagelist span.current{
     display:inline-block;

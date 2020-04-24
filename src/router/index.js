@@ -50,21 +50,32 @@ export default new Router({
           component:()=>import('@/views/features/sendMessage/menuSetting'),
           meta:{title:'设置菜单'},
 
+        },
+        {
+          path:'updateMenu',
+          name:'更新菜单',
+          component:()=> import('@/views/features/sendMessage/updateMenu'),
+          meta:{title:'更新菜单'},
+          hidden:true
         }]
     },
     {
-      path:'/Management',
-      redirect:'/Management/user',
+      path:'/management',
+      redirect:'/management/user',
+      component:Layout,
       name:'管理',
       meta:{title:'管理'},
-      children:[{
-        path:'/user',
+      children:[
+        {
+        path:'user',
         name:'用户管理',
-        meta:{title:'用户管理'}
+        component:()=>import('@/views/management/user/index'),
+        meta:{title:'查看关注用户'}
       },
         {
-          path:'/Message',
+          path:'message',
           name:'消息管理',
+          component:()=>import('@/views/management/message/index'),
           meta:{title:'消息管理'}
         }]
     },
