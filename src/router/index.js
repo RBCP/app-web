@@ -82,11 +82,13 @@ export default new Router({
     {
       path:'/setting',
       redirect:'/setting/userInfo',
+      component:Layout,
       name:'设置',
       meta:{title:'设置'},
       children:[{
         path:'userInfo',
         name:'个人中心',
+        component:()=>import('@/views/setting/information'),
         meta:{title:'个人中心'}
       },
         {

@@ -43,7 +43,7 @@
     </el-table>
     </div>
   </el-row>
-    <div class="pagination-container" style="margin-right:250px;">
+    <div class="pagination-container" style="margin-right:400px;">
       <pagination :page-config="listquery"
                   @changeCurrentPage="changeCurrentPage"
                   @changePageSize="changePageSize"

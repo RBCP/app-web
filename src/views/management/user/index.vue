@@ -53,8 +53,10 @@
       </el-table>
       <div class="pagination-container" style="margin-right:250px">
        <pagination :page-config="listquery"
-                   @changeCurrentPage="handleChange"
-                   @changePageSize="handleChangePageSize"
+                   @changeCurrentPage="handleCurrentChange"
+                   @changePageSize="handleChangePageSize">
+
+       </pagination>
       </div>
     </div>
 
@@ -66,7 +68,7 @@
   import Pagination from '@/components/Pagination'
   export default {
     name: 'user',
-    component:{Pagination},
+    components:{Pagination},
     data(){
       return {
         listquery:{
