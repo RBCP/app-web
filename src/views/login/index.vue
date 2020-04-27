@@ -3,18 +3,17 @@
     <el-card class="login-form-layout">
       <el-form autoComplete="on"
                :model="loginForm"
-               :rules="loginRules"
                ref="loginForm"
                label-position="left">
         <div style="text-align: center;width:268px;height:86px;margin-top:-28px">
           <svg-icon icon-class="branding-logo-data" style="width: 100px;height: 100px;color: #409EFF"></svg-icon>
         </div>
-        <el-form-item prop="username">
-          <el-input name="username"
+        <el-form-item prop="userID">
+          <el-input name="userID"
                     type="text"
-                    v-model="loginForm.username"
+                    v-model="loginForm.userID"
                     autoComplete="on"
-                    placeholder="Staff ID">
+                    placeholder="userID">
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
@@ -63,7 +62,7 @@
       };
       return {
         loginForm: {
-          username: 'xinke',
+          userID: 'xinke',
           password: 'xinke'
         },
         loginRules: {

@@ -1,10 +1,10 @@
 import request from '@/utils/request'
-export function login (username, password) {
+export function login (userID, password) {
   return request({
     url: 'mpVue/login',
     method: 'post',
     data: {
-      username,
+      userID,
       password
     }
   })
