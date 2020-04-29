@@ -6,19 +6,11 @@
         <div class="layout-title">comChat多媒体图片</div>
         <el-form :model="picMessage" label-width="120px" label-position="left">
           <el-form-item label="工号">
-            <el-select v-model="picMessage.employee_id"
-                       filterable
-                       remote
-                       placeholder="空值代表全部"
-                       :remote-method="remoteMethod"
-                       :loading="loading">
-                        <el-option
-                          v-for="item in options"
-                          :key="item.value"
-                          :label="item.label"
-                          :value="item.value">
-                        </el-option>
-            </el-select>
+          <el-autocomplete v-model="picMessage.employee_id"
+                           :fetch-suggestions="queryAsync"
+                           placeholder="请输入工号"
+                            @select="handleSelect">
+          </el-autocomplete>
           </el-form-item>
           <el-form-item label="部门代码">
             <el-select v-model="picMessage.dept"
@@ -69,6 +61,8 @@
 </template>
 
 <script>
+  import {searchUser} from "@/api/features";
+
   export default {
     name: 'sendPicture',
     data(){
@@ -99,16 +93,28 @@
           {label:'CA',value:'CA'},
           {label:'JP',value:'JP'},
         ],
-        states:['M088163','M088164','M088165','M087445','M947843','M109994','M084993','M099904','M984994','M984943',
-                'M848444','M837849','M894994','M989442','M984040']
+        states:[],
       }
     },
     mounted(){
-      this.list=this.states.map(item => {
-        return {value:`value:${item}`,label:`label:${item}`};
-      });
     },
     methods:{
+     queryAsync(queryString,callback){
+       let param ={employee_id:queryString}
+       searchUser(param).then(response => {
+         this.list = [];
+         response.data.data.forEach(item => {
+           this.list.push({
+             staffId: item.employee_id,
+             username:item.username
+           })
+         })
+         callback(this.list)
+       })
+     },
+      handleSelect(item){
+
+      },
       remoteMethod(query){
         if(query!==''){
           this.loading=false;
@@ -130,6 +136,9 @@
 </script>
 
 <style scoped>
+  .app-container{
+    margin-left:50px;
+  }
 .layout-1{
   background:#FFFFFF;
   border:1px solid #D3D3D3;
@@ -137,7 +146,6 @@
   height:560px;
   width:700px;
   margin-top:30px;
-  margin-left:150px;
 }
   .layout-title{
     color:#606266;

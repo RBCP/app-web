@@ -18,3 +18,12 @@ export function updateMenu(params){
     }
   )
 }
+export function searchUser(params){
+  return request(
+    {
+      url:'/mpVue//searchUser',
+      method:'get',
+      params:params
+    }
+  )
+}

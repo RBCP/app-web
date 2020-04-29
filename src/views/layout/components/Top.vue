@@ -14,7 +14,6 @@
         <span @click="help" style="margin-left:-7px">帮助</span>
       </li>
       <li>
-        <svg-icon icon-class="user_icon" style="width:2.0em;height:1.3em;margin-left:14px"></svg-icon>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <p class="user-avatar" >{{name}}</p>
@@ -71,15 +70,15 @@
     height: 30px;
     display: inline-block;
     position: absolute;
-    right: 50px;
+    right: -10px;
   }
   .avatar-wrapper {
     cursor: pointer;
-    margin-top: -23px;
+    margin-top: -39px;
     position: relative;
   }
   .user-avatar {
-    width:24px;
+    width:200px;
     height:11px;
     margin-top:24px;
     font-family:Arial,HelveticaNeue,sans-serif;
@@ -106,7 +105,7 @@
     width:282px;
     float:right;
     height:67px;
-    margin-right:30px;
+    margin-right:203px;
   }
    ul li{
     display:inline-block;

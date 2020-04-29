@@ -4,6 +4,8 @@ const user = {
   state: {
     token: getToken(),
     name: '',
+    password:'',
+    userId:'',
     avatar: '',
     roles: []
   },
@@ -13,6 +15,12 @@ const user = {
     },
     SET_NAME: (state, name) => {
       state.name = name
+    },
+    SET_PASSWORD:(state, password) =>{
+      state.password = password;
+    },
+    SET_USERID:(state, userId) =>{
+      state.userId =userId;
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
@@ -41,6 +49,8 @@ const user = {
         getInfo().then(response => {
           const data = response.data.data
           commit('SET_NAME', data.username)
+          commit('SET_PASSWORD',data.password)
+          commit('SET_USERID',data.userId)
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -52,6 +62,8 @@ const user = {
         logout().then(() => {
           commit('SET_TOKEN', '')
           commit('SET_NAME', '')
+          commit('SET_PASSWORD','')
+          commit('SET_USERID','')
           removeToken()
           resolve()
         })
