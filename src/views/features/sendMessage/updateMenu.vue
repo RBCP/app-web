@@ -4,7 +4,7 @@
     <div class="layout-1">
         <el-form :model="Menu" label-width="100px" label-position="left">
           <el-form-item label="菜单ID">
-            <el-input v-model="Menu.id"></el-input>
+            <el-input v-model="Menu.id" disabled ></el-input>
           </el-form-item>
           <el-form-item label="URL">
             <el-input v-model="Menu.url"></el-input>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import {updateMenu} from '@/api/features'
+  import {updateMenu,getMenuDetail} from '@/api/features'
   export default {
     name: 'updateMenu',
     data(){
@@ -34,9 +34,17 @@
         }
       }
     },
+    created(){
+      this.getMenu();
+    },
     methods:{
       getMenu(){
-
+        let params={
+          id:this.$route.query.id
+        }
+        getMenuDetail(params).then(response=>{
+          this.Menu=response.data.data;
+        })
       },
       updateMenu(){
         this.$confirm('是否提交?','warning',{
@@ -47,12 +55,10 @@
           updateMenu(this.Menu).then(response =>{
             this.$message({
               type:'success',
-              message:'成功提交'
+              message:response.data.data
             })
-            this.$router.push({path:'/sendMessage/menuSetting'})
           })
         })
-
       }
     }
   }

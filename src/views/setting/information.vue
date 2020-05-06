@@ -8,10 +8,10 @@
         <el-input v-model="user.name"></el-input>
       </el-form-item>
       <el-form-item label="应用简介">
-        <el-input v-model="user.description"></el-input>
+        <el-input v-model="user.des"></el-input>
       </el-form-item>
       <el-form-item label="创建时间">
-        <el-input v-model="user.createTime"></el-input>
+        <el-input v-model="user.time"></el-input>
       </el-form-item>
     </el-form>
     </div>
@@ -20,15 +20,26 @@
 </template>
 
 <script>
+  import {getInformation} from '@/api/setting'
   export default {
     name: 'information',
     data(){
       return{
         user:{
-          name:'SAE培训部',
-          description:'培训部课程和通知',
-          createTime:'2017-09-23'
+          name:'',
+          des:'',
+          time:''
         }
+      }
+    },
+    created(){
+      this.getInfo();
+    },
+    methods:{
+      getInfo(){
+        getInformation().then(response=>{
+          this.user=response.data.data;
+        })
       }
     }
   }

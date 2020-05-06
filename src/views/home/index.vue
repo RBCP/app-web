@@ -45,9 +45,9 @@
         <div class="layout-1">
           <div class="layout-title">信息总览</div>
           <el-row style="margin-top:40px">
-            <el-col :span="6" class="color-danger overview-item-value">60904</el-col>
-            <el-col :span="6" class="color-danger overview-item-value">758</el-col>
-            <el-col :span="6" class="color-danger overview-item-value">7838</el-col>
+            <el-col :span="6" class="color-danger overview-item-value">{{information.fansCount}}</el-col>
+            <el-col :span="6" class="color-danger overview-item-value">{{information.blackCount}}</el-col>
+            <el-col :span="6" class="color-danger overview-item-value">{{information.msgCount}}</el-col>
             <el-col :span="6" class="color-danger overview-item-value">8848</el-col>
           </el-row>
           <el-row>
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+  import {getAppInformation} from '@/api/home'
   export default {
     name: 'home',
     data(){
@@ -79,7 +80,22 @@
           yesterday:300,
           week:1750,
           mouth:52500
+        },
+        information:{
+          fansCount:'',
+          blackCount:'',
+          msgCount:'',
         }
+      }
+    },
+    created(){
+      this.initInformation();
+    },
+    methods:{
+      initInformation(){
+        getAppInformation().then(response=>{
+          this.information=response.data.data;
+        })
       }
     }
   }

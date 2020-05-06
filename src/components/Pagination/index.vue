@@ -106,6 +106,7 @@
     font-size: 12px;
     color: #5A85DF;
     letter-spacing: 0.67px;
+    width: 570px;
   }
   .pagelist span.total{
     display:inline-block;

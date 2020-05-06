@@ -9,7 +9,7 @@
           <el-autocomplete v-model="picMessage.employee_id"
                            :fetch-suggestions="queryAsync"
                            placeholder="请输入工号"
-                            @select="handleSelect">
+                           @select="handleSelect">
           </el-autocomplete>
           </el-form-item>
           <el-form-item label="部门代码">
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-  import {searchUser} from "@/api/features";
+  import {searchUser,getDeptList,getLocusList} from "@/api/features";
 
   export default {
     name: 'sendPicture',
@@ -78,42 +78,51 @@
         },
         options:[],
         value:[],
-        list:[],
         loading:false,
-        options1:[
-          {label:'G100',value:'G100'},
-          {label:'AD51',value:'AD51'},
-          {label:'AE31',value:'AE31'},
-          {label:'TN21',value:'JB01'},
-          {label:'G370',value:'G370'}
-        ],
-        options2:[
-          {label:'DG',value:'DG'},
-          {label:'HK',value:'Hk'},
-          {label:'CA',value:'CA'},
-          {label:'JP',value:'JP'},
-        ],
+        options1:[],
+        options2:[],
         states:[],
       }
     },
     mounted(){
     },
+    created(){
+      this.getLocus();
+      this.getDept();
+    },
     methods:{
      queryAsync(queryString,callback){
+       let list=[{}];
        let param ={employee_id:queryString}
        searchUser(param).then(response => {
          this.list = [];
          response.data.data.forEach(item => {
-           this.list.push({
-             staffId: item.employee_id,
-             username:item.username
+             list.push({
+             value: item.employee_id+'('+item.username+")",
            })
          })
-         callback(this.list)
+         callback(list)
        })
      },
-      handleSelect(item){
-
+      getLocus(){
+       getLocusList().then(response=>{
+         response.data.data.forEach(item=>{
+           this.options2.push({
+             label:item.title,
+             value:item.title
+           })
+         })
+       })
+      },
+      getDept(){
+        getDeptList().then(response=>{
+          response.data.data.forEach(item=>{
+            this.options1.push( {
+              label:item.title,
+              value:item.title
+            })
+          })
+        })
       },
       remoteMethod(query){
         if(query!==''){
@@ -163,6 +172,10 @@
     left:0
   }
   .el-input{
+    position:absolute;
+    left:0;
+  }
+  .el-autocomplete{
     position:absolute;
     left:0;
   }

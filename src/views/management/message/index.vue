@@ -17,7 +17,7 @@
         </template>
       </el-table-column>
       <el-table-column label="接受者姓名"
-                       width="200"
+                       width="150"
                        resizable
                        prop="receiver_name">
         <template slot-scope="scope">
@@ -33,27 +33,29 @@
         </template>
       </el-table-column>
       <el-table-column label="发送内容"
-                        width="250"
+                        width="300"
                         resizable
-                        prop="content">
+                        prop="content"
+                        :show-overflow-tooltip="true">
         <template slot-scope="scope">
           {{scope.row.content}}
         </template>
       </el-table-column>
     </el-table>
-    </div>
-  </el-row>
-    <div class="pagination-container" style="margin-right:400px;">
+    <div class="pagination-container" style="margin-right:250px;">
       <pagination :page-config="listquery"
                   @changeCurrentPage="changeCurrentPage"
                   @changePageSize="changePageSize"
                   ></pagination>
     </div>
+    </div>
+  </el-row>
 </div>
 </template>
 
 <script>
   import Pagination from '@/components/Pagination'
+  import {getMsgList} from '@/api/management'
   export default {
     name: 'message',
     components:{Pagination},
@@ -62,8 +64,8 @@
         list:[],
         listquery:{
           page:1,
-          pageSize:10,
-          total:100,
+          pageSize:50,
+          total:0,
         }
       }
     },
@@ -72,13 +74,9 @@
     },
     methods:{
       initList(){
-        this.list=[
-          {receiver_employee_id:'M025028',receiver_name:'He Jian Feng',timelimit:'2018-09-25 17:02:39',content:'nfhuhsfdshfhdjfdhjfhh'},
-          {receiver_employee_id:'M084914',receiver_name:'Song Cheng Long',timelimit:'2018-09-22 12:36:19',content:'ffhjdfhjdhsjfhsjdhf'},
-          {receiver_employee_id:'M088192',receiver_name:'Bin Peng',timelimit:'2018-09-21 08:30:27',content:'hfhjdhfjhjfhdhfhfhh'},
-          {receiver_employee_id:'M701455',receiver_name:'Fu Jian Wang',timelimit:'2018-09-14 14:28:33',content:'jfjdhjfhjhhjfifi'},
-          {receiver_employee_id:'M701678',receiver_name:'Li Quan',timelimit:'2018-09-13 08:04:43',content:'jfdsjfhsjfhjdhfjhdfh'}
-        ]
+        getMsgList(this.listquery).then(response=>{
+          this.list = response.data.data.list;
+        })
       },
       changeCurrentPage(val){
         this.listquery.page=val;
@@ -97,6 +95,12 @@
 }
   .table-container{
     width:600px;
+    height:900px;
   }
-
+.pagination-container{
+  position:absolute;
+  left:100px;
+  height:150px;
+  margin-top:20px;
+}
 </style>

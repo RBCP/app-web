@@ -35,12 +35,12 @@
           </template>
         </el-table-column>
         <el-table-column label="关注时间"
-                         prop="time"
+                         prop="times"
                          align="center"
                          width="250"
                          resizable>
           <template slot-scope="scope">
-            {{scope.row.time}}
+            {{scope.row.times}}
           </template>
         </el-table-column>
         <el-table-column align="center"
@@ -66,6 +66,8 @@
 
 <script>
   import Pagination from '@/components/Pagination'
+  import {getFansList,deleteFans} from "@/api/management";
+
   export default {
     name: 'user',
     components:{Pagination},
@@ -73,9 +75,9 @@
       return {
         listquery:{
           nickname:'',
-          page:1,
-          pageSize:10,
-          total:100
+          pageIndex:1,
+          pageSize:50,
+          total:0
         },
         pageConfig:{
           page:'',
@@ -91,29 +93,36 @@
     },
     methods:{
       initList(){
-          this.list=[
-            {employee_id:'M090152',toNickname:'Mai Wei Ming',time:'2020-04-22 08:53:13'},
-            {employee_id:'M117703',toNickname:'Wen Fang Tan',time:'2020-04-21 08:56:44'},
-            {employee_id:'M088251',toNickname:'Simon Shi Zhi',time:'2020-04-19 22:41:07'},
-            {employee_id:'M088050',toNickname:'Shi Wei Zhang',time:'2020-04-17 15:18:26'},
-            {employee_id:'R551247',toNickname:'Tang RU Yi',time:'2020-04-16 16:06:36'},
-            {employee_id:'M088362',toNickname:'Meng Zhen Chen',time:'2020-04-09 09:00:09'}
-          ]
+         getFansList(this.listquery).then(response=>{
+           this.list=response.data.data.list;
+           this.listquery.total=response.data.data.total;
+         })
       },
-      deleteRow(){
+      deleteRow(data){
         this.$confirm('是否删除','warning',{
           confirmButtonText:'确定',
           cancelButtonText:'取消',
           warning:true
         }).then(()=>{
-
+          let params={
+            toUserId:data.toUserId
+          }
+          deleteFans(params).then(response=>{
+            this.$message({
+              type:'success',
+              message:response.data.data
+            })
+          })
+          this.initList();
         })
       },
       handleChangePageSize(val){
         this.listquery.pageSize=val;
+        this.initList();
       },
       handleCurrentChange(val){
-        this.listquery.page=val;
+        this.listquery.pageIndex=val;
+        this.initList();
       },
       searchUser(){
 
@@ -126,6 +135,7 @@
 .app-container{
   margin-top:30px;
   margin-left:30px;
+  overflow-y:visible;
 }
 .layout-1{
   margin-bottom:30px;
@@ -138,6 +148,7 @@
   .table-container{
     margin-top:30px;
     width:600px;
+    height:900px;
   }
   .pagination-container{
     position:absolute;

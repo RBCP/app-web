@@ -105,7 +105,7 @@
     width:282px;
     float:right;
     height:67px;
-    margin-right:203px;
+    margin-right:110px;
   }
    ul li{
     display:inline-block;

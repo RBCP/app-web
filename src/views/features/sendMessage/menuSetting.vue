@@ -5,7 +5,7 @@
       <div class="layout-title">添加菜单</div>
       <el-form :model="Menu"  label-width="100px" >
         <el-form-item label="菜单级别">
-          <el-select v-model="Menu.id" placeholder="请选择">
+          <el-select v-model="Menu.parentId" placeholder="请选择">
             <el-option v-for="item in menuList"
                        :key="item.value"
                        :label="item.label"
@@ -20,7 +20,7 @@
             <el-input v-model="Menu.url"></el-input>
           </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="small" style="position:absolute;left:130px;">添加</el-button>
+          <el-button type="primary" size="small" style="position:absolute;left:130px;" @click="Add">添加</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -76,8 +76,8 @@
                           width="150"
                           align="center">
           <template slot-scope="scope">
-            <el-button @click="deleteRow(scope.row)" type="text" size="small">删除</el-button>
-            <el-button @click.native.prevent="updateRow(scope.$index,list)"
+            <el-button @click="deleteRow(scope.$index,scope.row)" type="text" size="small">删除</el-button>
+            <el-button @click.native.prevent="updateRow(scope.$index,scope.row)"
                        type="text"
                        size="small">
               修改
@@ -93,12 +93,14 @@
 </template>
 
 <script>
+  import {getMenuList,addMenu,deleteMenu} from '@/api/features'
   export default {
     name: 'menuSetting',
     data(){
       return{
         Menu:{
-          id:'',
+          userName:this.$store.getters.userId,
+          password:this.$store.getters.password,
           parentId:'',
           name:'',
           url:''
@@ -106,33 +108,42 @@
         },
         spanArr:[],
         pos:0,
-        menuList:[],
-        list:'',
+        list:[],
         listLoading:false,
         menuList:[
           {value:0,label:'一级菜单'},
-          {value:1,label:'二级菜单-我要学习'},
-          {value:2,label:'二级菜单-关于我们'},
-          {value:3,label:'二级菜单-个人中心'}
         ]
       }
     },
     created(){
-      this.initData();
-      this.getSpanArr()
+      this.getList();
+      //this.getSpanArr()
     },
     methods:{
-      initData(){
-          this.list=[
-            {MainName:'我要学习',parentId:0,url: 'hai.com',id:1001},
-            {MainName:'我要学习',name:'精选VEEC',parentId:1001,url:'https://mapp.sae.tdk.com/VECC/Page/VeecHistory',id:1002},
-            {MainName:'我要学习',name:'部门专训',parentId:1001,url:'https://mapp.sae.tdk.com/VECC/Page/trainingDepartmental',id:1003},
-            {MainName:'关于我们',parentId:0,url:'hai.com',id:1004},
-            {MainName:'关于我们',name:'关于VECC',parentId:1004,url:'https://mapp.sae.tdk.com/VECC/Page/AboutVecec',id:1005},
-            {MainName:'关于我们',name:'陪伴活动',parentId:1004,url:'https://mapp.sae.tdk.com/VECC/Page/trainingWithAction',id:1006},
-            {MainName:'关于我们',name:'陪伴软文',parentId:1004,url:'https://mapp.sae.tdk.com/Vecc/Page/trainingSoftPaper',id:1007},
-            {MainName:'关于我们',name:'成为V客',parentId:1004,url:'https://mapp.sae.tdk.com/Vecc/Page/BeComeVer',id:1008}
-          ]
+      getList(){
+        getMenuList().then(response=>{
+          let data=response.data.data;
+          for(let i=0;i<data.length;i++){
+            let item={'MainName':data[i].name,'name':'','id':data[i].id,'url':data[i].url};
+            this.list.push(item);
+            let item2={value:data[i].id,label:'二级菜单-'+data[i].name}
+            this.menuList.push(item2);
+            let menuList=data[i].menuList;
+            for(let j=0;j<menuList.length;j++){
+              let item1={'MainName':'','name':menuList[j].name,'id':menuList[j].id,'url':menuList[j].url}
+              this.list.push(item1);
+            }
+          }
+        })
+      },
+      Add(){
+        addMenu(this.Menu).then(response=>{
+          this.$message({
+            type:'success',
+            message:response.data.data
+          })
+        })
+        this.getList();
       },
       objectSpanMethod({row,column,rowIndex,columnIndex}){
         if(columnIndex === 0) {
@@ -147,9 +158,28 @@
       },
       deleteRow(index,data) {
 
+          this.$confirm('是否删除该选项','Waring',{
+            confirmButtonText:'确定',
+            cancelButtonText:'取消',
+            warn:true
+          }).then(() =>{
+            deleteMenu(data).then(response=>{
+              this.$message({
+                type:'success',
+                message:response.data.data
+              })
+            })
+          })
+        this.getList();
       },
       updateRow(index,data){
-
+        console.log(data);
+          this.$router.push({
+            path:'/features/updateMenu',
+            query:{
+              id:data.id
+            }
+          });
       },
       getSpanArr(){
         for(let i=0;i<this.list.length;i++){
@@ -208,7 +238,7 @@
     height:380px;
     width:600px;
     margin-top:30px;
-    margin-left:40px;
+    margin-left:30px;
     margin-bottom:30px;
   }
   .el-form{
