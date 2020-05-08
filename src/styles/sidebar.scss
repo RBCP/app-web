@@ -2,9 +2,14 @@
 
   // 主体区域
   .main-container {
-    max-height:90%;
+    max-height:80%;
+    width:90%;
     transition: margin-left .28s;
     margin-left: 230px;
+    margin-top:120px;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
     font-family:Arial, HelveticaNeue, sans-serif
   }
   @font-face{

@@ -38,7 +38,7 @@
             <el-input v-model="picMessage.texturl" style="width:460px"></el-input>
           </el-form-item>
           <el-form-item label="图片上传">
-            <el-upload action="https://jsonplaceholder.typicode.com/posts/"
+            <el-upload :http-request="uploadImage"
                        :on-preview="handlePreview"
                        :on-remove="handleRemove"
                        :before-remove="beforeRemove"
@@ -51,7 +51,7 @@
             <el-input v-model="picMessage.title" style="width:460px"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button @click="sendPicMessage" type="primary" size="small">发送</el-button>
+            <el-button type="primary" size="small" @click="uploadImage">发送</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -62,7 +62,7 @@
 
 <script>
   import {searchUser,getDeptList,getLocusList} from "@/api/features";
-
+  import axios from 'axios'
   export default {
     name: 'sendPicture',
     data(){
@@ -91,6 +91,25 @@
       this.getDept();
     },
     methods:{
+       uploadImage(){
+        const config={
+          headers:{'Content-Type':'multipart/form-data'}
+        };
+        const formdata =new FormData();
+        formdata.append('userName',this.$store.getters.userId)
+        formdata.append('password',this.$store.getters.password)
+        formdata.append('text',this.picMessage.employee_id)
+        formdata.append('dept',this.picMessage.dept)
+        formdata.append('locus',this.picMessage.location)
+        formdata.append('title',this.picMessage.title)
+        formdata.append('desc',this.picMessage.desc)
+        formdata.append('texturl',this.picMessage.texturl)
+        formdata.append('file',this.picMessage.file)
+         console.log("发送图片")
+        axios.post('http://localhost:8081/UploadPushpicServlet',formdata,config).then(response=>{
+          console.log("上传成功")
+        })
+      },
      queryAsync(queryString,callback){
        let list=[{}];
        let param ={employee_id:queryString}
@@ -98,7 +117,7 @@
          this.list = [];
          response.data.data.forEach(item => {
              list.push({
-             value: item.employee_id+'('+item.username+")",
+             value: item.employee_id,
            })
          })
          callback(list)

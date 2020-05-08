@@ -138,7 +138,7 @@
 }
 .layout-2{
   background:#FFFFFF;
-  border:1px solid #D3D3D3D3;
+  border:1px solid #D3D3D3;
   border-radius:6px;
   height:450px;
   width:700px;

@@ -105,11 +105,9 @@
   .app-container{
     max-height:780px;
     margin-top:10px;
-    overflow-y:scroll;
-    overflow-x:auto;
   }
   .bulletin{
-    width:1080px;
+    width:80%;
     height:40px;
     border:1px solid #5189FF;
     text-align:left;

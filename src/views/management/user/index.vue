@@ -149,6 +149,7 @@
     margin-top:30px;
     width:600px;
     height:900px;
+    overflow-y:visible;
   }
   .pagination-container{
     position:absolute;

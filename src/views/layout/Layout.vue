@@ -1,7 +1,9 @@
 <template>
   <div class="app-wrapper" :class="classObj">
+    <div class="nav-container">
     <top></top>
     <navbar></navbar>
+    </div>
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container">
       <app-main></app-main>
@@ -41,5 +43,10 @@ export default {
     position: relative;
     height: 100%;
     width: 100%;
+  }
+  .nav-container{
+    position:fixed;
+    top:0;
+    width:100%;
   }
 </style>
